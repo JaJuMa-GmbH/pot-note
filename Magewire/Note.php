@@ -35,7 +35,7 @@ class Note extends Component
     public function mount(): void
     {
         $connection = $this->resourceConnection->getConnection();
-        $table = $connection->getTableName('core_config_data');
+        $table = $this->resourceConnection->getTableName('core_config_data');
         $query = "SELECT * FROM `" . $table . "` WHERE `path` = '" . self::XML_PATH_POT_NOTE . "'";
         $result = $connection->fetchRow($query);
         $this->note = isset($result['value']) ? $result['value'] : '';
