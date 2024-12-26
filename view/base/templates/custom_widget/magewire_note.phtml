@@ -12,6 +12,8 @@ use Magento\Framework\Escaper;
 /** @var Escaper $escaper */
 $magewire = $block->getMagewire();
 $note = $magewire->getNote();
+$powerToysHelper = $this->helper(\Jajuma\PowerToys\Helper\Data::class);
+$nonce = $powerToysHelper->getNonce();
 ?>
 <div id="powertoys-note">
     <?php if ($magewire->getMessagePotNote()) : ?>
@@ -29,7 +31,7 @@ $note = $magewire->getNote();
             <span><?= __('Save') ?></span>
         </button>
     </div>
-    <script type="text/javascript">
+    <script type="text/javascript" <?= $nonce ? 'nonce="' . $nonce . '"' : '' ?>>
         editNote = () =>  {
             let notePopup = document.querySelector("#powertoys-note");
             let noteTextArea = notePopup.querySelector('#note-input');
